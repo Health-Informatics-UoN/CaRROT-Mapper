@@ -47,6 +47,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    "django.contrib.sites",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -62,9 +63,10 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "test",
-    "auth.apps.AuthConfig",
-    "rest_framework.authtoken",
+    "authentication.apps.AuthConfig",
     "rest_framework_simplejwt",
+    "allauth",
+    "allauth.account",
 ]
 
 MIDDLEWARE = [
@@ -156,6 +158,8 @@ USE_TZ = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+SITE_ID = 1
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.TokenAuthentication",
@@ -176,6 +180,10 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 NLP_API_KEY = os.getenv("NLP_API_KEY")
 
 SESSION_COOKIE_AGE = 86400  # session length is 24 hours
+
+
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
