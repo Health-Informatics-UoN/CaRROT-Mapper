@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "test",
-    "authentication.apps.AuthConfig",
+    "authentication.apps.AuthenticationConfig",
     "rest_framework_simplejwt",
     "allauth",
     "allauth.account",
