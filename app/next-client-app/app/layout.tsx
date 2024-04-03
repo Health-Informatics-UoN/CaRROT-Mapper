@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import "./globals.css";
+import { Providers } from "@/app/providers";
 
 export const metadata: Metadata = {
   title: "CaRROT-Mapper",
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar /> {children}
+        <Providers>
+          <Navbar /> {children}
+        </Providers>
       </body>
     </html>
   );
