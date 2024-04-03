@@ -1,10 +1,4 @@
-import NextAuth, {
-  Account,
-  NextAuthOptions,
-  Profile,
-  Session,
-  User,
-} from "next-auth";
+import { NextAuthOptions, Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -15,19 +9,6 @@ const BACKEND_REFRESH_TOKEN_LIFETIME = 6 * 24 * 60 * 60; // 6 days
 const getCurrentEpochTime = () => {
   return Math.floor(new Date().getTime() / 1000);
 };
-
-const SIGN_IN_HANDLERS = {
-  credentials: async (
-    user: User,
-    account: Account,
-    profile: Profile,
-    email: string,
-    credentials: any,
-  ) => {
-    return true;
-  },
-};
-const SIGN_IN_PROVIDERS = Object.keys(SIGN_IN_HANDLERS);
 
 export const options: NextAuthOptions = {
   secret: process.env.AUTH_SECRET,
@@ -70,12 +51,6 @@ export const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    // async signIn({user, account, profile, email, credentials}) {
-    //   if (!account || !SIGN_IN_PROVIDERS.includes(account.provider)) return false;
-    //   return SIGN_IN_HANDLERS[account.provider](
-    //     user, account, profile, email, credentials
-    //   );
-    // },
     async jwt({ user, token, account }) {
       // If `user` and `account` are set that means it is a login event
       if (user && account) {
@@ -110,9 +85,10 @@ export const options: NextAuthOptions = {
           }
 
           const responseData = await response.json();
-          token["access_token"] = responseData.access;
-          token["refresh_token"] = responseData.refresh;
-          token["ref"] = getCurrentEpochTime() + BACKEND_ACCESS_TOKEN_LIFETIME;
+          token.access_token = responseData.access;
+          token.refresh_token = responseData.refresh;
+          token.expires_at =
+            getCurrentEpochTime() + BACKEND_ACCESS_TOKEN_LIFETIME;
         } catch (error) {
           console.error(error);
         }
