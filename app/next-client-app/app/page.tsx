@@ -16,7 +16,7 @@ export default async function Home() {
       <br />
       User: {username}
       <br />
-      Data: {data[0].name}
+      Data: {data[0]?.name}
     </div>
   );
 }
