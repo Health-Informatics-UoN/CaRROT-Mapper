@@ -11,6 +11,8 @@ import { getScanReports } from "@/api/scan-reports";
 export default async function ScanReports() {
   const result = await getScanReports();
 
+  console.log(result);
+
   return (
     <div className="pt-10 px-16">
       <div>
@@ -43,6 +45,7 @@ export default async function ScanReports() {
       <Button size="lg" className="my-5 text-md bg-blue-900 hover:bg-blue-800">
         New Scan Report
       </Button>
+      {result[0]?.name}
     </div>
   );
 }
