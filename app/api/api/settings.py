@@ -84,6 +84,8 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
+CSRF_TRUSTED_ORIGINS = ["http://localhost"]
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ROOT_URLCONF = "api.urls"
@@ -196,6 +198,7 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": True,
     "SIGNING_KEY": os.getenv("SIGNING_KEY"),
     "ALGORITHM": "HS512",
+    "AUTH_HEADER_TYPES": ("JWT",),
 }
 
 REST_AUTH = {
