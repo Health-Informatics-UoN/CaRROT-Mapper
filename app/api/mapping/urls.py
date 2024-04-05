@@ -1,5 +1,6 @@
-from django.urls import include, path
+from django.urls import include, path, re_path
 from rest_framework import routers
+from revproxy.views import ProxyView
 
 from . import views
 
@@ -211,7 +212,14 @@ urlpatterns = [
     path("api/", include(routers.urls)),
     path("api_auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("", views.home, name="home"),
-    path("scanreports/", views.ScanReportListView.as_view(), name="scan-report-list"),
+    # path("scanreports/", views.ScanReportListView.as_view(), name="scan-report-list"),
+    re_path(
+        "scanreports/(?P<path>.*)$",
+        ProxyView.as_view(upstream="http://localhost:3000/scanreports"),
+    ),
+    re_path(
+        "_next/(?P<path>.*)$", ProxyView.as_view(upstream="http://localhost:3000/_next")
+    ),
     path(
         "scanreports/<int:pk>/mapping_rules/",
         views.StructuralMappingTableListView.as_view(),
