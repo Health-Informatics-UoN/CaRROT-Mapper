@@ -473,6 +473,24 @@ files = [
 Django = ">=2.2"
 
 [[package]]
+name = "django-revproxy"
+version = "0.12.0"
+description = "Yet another Django reverse proxy application"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "django_revproxy-0.12.0-py3-none-any.whl", hash = "sha256:bd8e735414783477e18a79b3bb1e2180e0c60d412cd2bfdcf34d8898406b26e4"},
+]
+
+[package.dependencies]
+Django = ">=3.0"
+urllib3 = ">=1.12"
+
+[package.extras]
+diazo = ["diazo (>=1.0.5)", "lxml (>=3.4)"]
+tests = ["coverage", "diazo", "flake8", "lxml (>=3.4)"]
+
+[[package]]
 name = "django-select2"
 version = "7.10.0"
 description = "Select2 option fields for Django"
@@ -983,4 +1001,4 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "fc40a401020f7e285134695b1e6ff86c8124a319013b2bc903ee1f6fe1a46c76"
+content-hash = "d4454f5416e82730f77fae9a02b33ef0051c96b2fb8f7bfd89a4654fcdb8ca1e"

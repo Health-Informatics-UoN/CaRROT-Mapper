@@ -28,6 +28,7 @@ pytest-django = "^4.8.0"
 djangorestframework-simplejwt = "^5.3.1"
 django-allauth = "^0.61.1"
 dj-rest-auth = {extras = ["with-social"], version = "^5.1.0"}
+django-revproxy = "^0.12.0"
 
 [build-system]
 requires = ["poetry-core"]
