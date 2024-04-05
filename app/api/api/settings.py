@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "dj_rest_auth",
     "dj_rest_auth.registration",
+    "revproxy",
 ]
 
 MIDDLEWARE = [
