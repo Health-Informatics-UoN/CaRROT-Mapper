@@ -1,11 +1,3 @@
-import React, { useEffect, useState } from "react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import {
   getScanReport,
   getScanReportField,
@@ -13,15 +5,18 @@ import {
   getScanReportTable,
   getScanReportValues,
 } from "@/api/scanreports";
-import { DataTable } from "@/components/data-table";
-import { objToQuery } from "@/lib/client-utils";
-import { DataTableFilter } from "@/components/data-table/DataTableFilter";
-import { FilterParameters } from "@/types/filter";
 import { getConceptFilters, getScanReportConcepts } from "@/api/concepts";
-import { addConceptsToResults } from "@/lib/concept-utils";
-import { columns } from "./columns";
-import { ButtonsRow } from "@/components/scanreports/ButtonsRow";
 import { DataTableTest } from "./data-table";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { ButtonsRow } from "@/components/scanreports/ButtonsRow";
+import { objToQuery } from "@/lib/client-utils";
+import { FilterParameters } from "@/types/filter";
 
 interface ScanReportsValueProps {
   params: {
@@ -111,7 +106,7 @@ export default async function ScanReportsValue({
           permissions={permissions}
           scanReportsConcepts={scanReportsConcepts}
           conceptsFilter={conceptsFilter}
-          scanReportsResults={scanReportsValues.results}
+          scanReportsValues={scanReportsValues.results}
         />
       </div>
     </div>
